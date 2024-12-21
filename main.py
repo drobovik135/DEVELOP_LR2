@@ -3,6 +3,7 @@ import psycopg2
 
 from src.dataBaseInit.dataBaseInit import init_table
 from src.parser.mainParser import parse_files
+from src.generateData.generator import data_generate
 
 resource_dir = "resources/"
 
@@ -34,6 +35,11 @@ def main():
         print("error on parse:")
         print(e)
 
+    try:
+        data_generate(conn)
+    except Exception as e:
+        print("error on data generate:")
+        print(e)
 
     conn.close()
 
